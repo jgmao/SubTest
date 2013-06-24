@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Show Image {% endblock %}
+
+
+
+{% block content %}
+
+<h1>Show Image </h1>
+<h3>Please rank the following three images according to the dominant color percentage (1-highest, 3-lowest), and click continue </h3>
+<form action="/result/" method="post" >{% csrf_token %}
+<table>
+{% for image in images %}
+<tr>
+<td>
+<img id = {{image}} src={{STATIC_URL}}{{image}}>
+</td>
+<td>
+<input id = {{image}} type="number" value = "1" name="answer[]">
+</td>
+</tr>
+
+{% endfor %}
+</table>
+<input type="submit" value="Continue">
+</form>
+
+{% endblock %}
